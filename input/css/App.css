@@ -1,0 +1,132 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+
+main{
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+header{
+	padding: 1em;
+	display: flex;
+	justify-content: space-between;
+
+	width: 100vw;
+	z-index: 100;
+
+	box-sizing: border-box;
+
+	font-family: monospace;
+	background-color: rgba( 255, 240, 0, 0.9 );
+	box-shadow: 6px 6px 9px rgba(0,0,0,0.8);
+}
+
+header h1,
+header h2{
+	line-height: 24px;
+}
+
+header h2{
+	font-size: 18px;
+}
+
+@media screen and (max-width: 991px){
+	header h1{
+		font-size: 18px;
+	}
+
+	header h2{
+		text-align: right;
+		font-size: 16px;
+	}
+}
+
+section.screen {
+	width: 100vw;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	flex-grow: 1;
+	background-color: black;
+	background-color: darkslateblue;
+	background-color: #141126;
+	background-color: #131023;
+	background: linear-gradient(rgb(0, 0, 0) 1%, #131023 90%, #18142b);
+	background: linear-gradient(rgb(0, 0, 0) 1%, #131023);
+	background: linear-gradient(rgb(0, 0, 0), #0f0d1c, #131023, #241e4a);
+	border-bottom: 1vh solid #483d8ba6;
+	margin: 0 0 auto 0;
+}
+
+figure{
+	width: 100vw;
+	text-align: center;
+}
+
+figure img{
+	display: inline-block;
+	width: 33vw;
+	max-width: 33vw;
+	min-height: 27vw;
+	border: 1vw solid yellow;
+	box-shadow: 6px 6px 15px rgba(0,0,0,0.66);
+}
+
+@media screen and ( max-width: 991px ){
+	figure img{
+		display: inline-block;
+		width: 66vw;
+		max-width: 66vw;
+		border: 1vw solid yellow;
+	}
+}
+
+figure h2{
+	font-family: monospace;
+	font-size: 20px;
+	color: yellow;
+}
+
+figure p{
+	font-family: monospace;
+	font-size: 16px;
+	color: yellow;
+}
+
+figure p a,
+figure p a:link,
+figure p a:visited,
+figure p a:hover,
+figure p a:active{
+	color: orange;
+}
+
+
+footer{
+	padding: 1em;
+	background-color: rgba( 0, 0, 0, 0.8 );
+	border-top: 1px solid #ffff0022;
+	border-bottom: 1px solid rgba(255,255,0,0.1);
+}
+
+code{
+	margin: 0 auto;
+	display: block;
+	font-family: monospace;
+	color: #fff;
+	text-align: center;
+	max-width: 90vw;
+	overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 991px){
+	code{
+		max-width: 90vw;
+	}
+}
