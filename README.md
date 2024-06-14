@@ -82,7 +82,7 @@ Broadcasting.Adaptor.putBroadcastChannel( BROADCAST_CHANNEL_APP );
 
 ```
 
-Note: We're using an adapter/adaptor so that users of the Broadcasting system don't need to worry about a few of its details. (See also: ([Adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern))
+Note: We're using an adapter/adaptor so that users of the Broadcasting system don't need to worry about a few of its details. (See also: [Adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern))
 
 ##### BroadcastChannelSubscriber
 
@@ -108,7 +108,7 @@ Broadcasting.Adaptor.putBroadcastChannelSubscriber( channel_id, subscriber_data 
 
 ```
 
-Note: We're using an adapter/adaptor so that users of the Broadcasting system don't need to worry about a few of its details. (See also: ([Adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern))
+Note: We're using an adapter/adaptor so that users of the Broadcasting system don't need to worry about a few of its details. (See also: [Adapter pattern](https://en.wikipedia.org/wiki/Adapter_pattern))
 
 ##### BroadcastMessage
 
