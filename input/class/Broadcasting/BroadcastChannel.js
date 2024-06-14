@@ -212,7 +212,7 @@ export default class BroadcastChannel{
 			this.header.config.subscribers.push( broadcast_channel_subscriber );
 		}
 
-		if( APP_FLAG_DEBUG ){
+		if( APP_FLAG_DEBUG && APP_FLAG_DEBUG_VERBOSE ){
 			console.log( this.header.id, 'BroadcastChannel.getSubscribers()', this.getSubscribers() );
 		}
 	}
