@@ -103,7 +103,8 @@ export default class App extends React.Component{
 	getRenderData(){
 		/**
 		 * @var jsx render_data
-		 * @var jsx render_data_fragment
+		 * @var jsx render_data_log
+		 * @var jsx render_data_screen
 		 */
 		let render_data,
 		render_data_log,
@@ -177,16 +178,7 @@ export default class App extends React.Component{
 		length = log_data.length;
 
 		for( ; index >= 0; index-- ){
-			/**
-			 * @var string log_entry_data
-			 */
-			let log_entry_data = log_data[ index ];
-
-			log_entries.push( 
-<>
-	Message #{index+1} {JSON.stringify( log_entry_data )} <br/>
-</>
-			);
+			log_entries.push( <> Message #{index+1} {JSON.stringify( log_data[ index ] )} <br/> </> );
 
 			if( LOG_MAX_MESSAGES && ( index <= ( length - LOG_MAX_MESSAGES ) ) ){
 				break;
@@ -315,38 +307,14 @@ export default class App extends React.Component{
 				this.patchConfig( broadcast_message.data );
 			break;
 
+			case 'patch:log':
+				//No-op
+			break;
+
 			case 'put:error':
 				this.putError( broadcast_message.data );
 			break;
 		}
-	}
-
-	/**
-	 * Log the data to one or more sources.
-	 * @var mixed log_data
-	 */
-	putLog( log_data ){
-		this.putLogData( log_data );
-	}
-
-	/**
-	 * Log the data.
-	 * Note: In this case, we're just logging to the state.
-	 *
-	 * @var mixed log_data
-	 */
-	putLogData( log_data ){
-		this.setState( ( input_data ) => {
-			let output_data = produce( input_data, ( draft_data ) => {
-				draft_data.data.log.push( log_data );
-			} );
-
-			if( input_data != output_data ){
-				return( output_data );
-			} else {
-				return( null );
-			}
-		} );
 	}
 
 	/**
@@ -431,6 +399,34 @@ export default class App extends React.Component{
 		this.setState( ( input_data ) => {
 			let output_data = produce( input_data, ( draft_data ) => {
 				draft_data.header.app.errors.push( ...error_data );
+			} );
+
+			if( input_data != output_data ){
+				return( output_data );
+			} else {
+				return( null );
+			}
+		} );
+	}
+
+	/**
+	 * Log the data to one or more sources.
+	 * @var mixed log_data
+	 */
+	putLog( log_data ){
+		this.putLogData( log_data );
+	}
+
+	/**
+	 * Log the data.
+	 * Note: In this case, we're just logging to the state.
+	 *
+	 * @var mixed log_data
+	 */
+	putLogData( log_data ){
+		this.setState( ( input_data ) => {
+			let output_data = produce( input_data, ( draft_data ) => {
+				draft_data.data.log.push( log_data );
 			} );
 
 			if( input_data != output_data ){

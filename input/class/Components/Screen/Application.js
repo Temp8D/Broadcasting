@@ -10,7 +10,8 @@ import React from 'react';
 import {
 	SCREEN_APPLICATION_INTERVAL_MIN,
 	SCREEN_APPLICATION_INTERVAL_MAX,
-	URL_SCREEN_APPLICATION_IMG
+	URL_SCREEN_APPLICATION_IMG,
+	URL_SCREEN_APPLICATION_README
 } from '../../../shared/Constants.js'
 
 import {
@@ -29,7 +30,7 @@ import Broadcasting from '../../Broadcasting/Broadcasting.js';
  */
 export default class Application extends React.Component{
 	componentDidMount(){
-		this.putMessageDelayed();
+		this.patchLogDelayed();
 	}
 
 	constructor( constructor_data ){
@@ -59,7 +60,7 @@ export default class Application extends React.Component{
 		<img src={URL_SCREEN_APPLICATION_IMG} />
 		<h2>Screen Name: Application</h2>
 		<p>Hello, authorized user #{this.getIpAddress()}!</p>
-		 <p>Read Me: <a href="https://www.reddit.com/r/reactjs/comments/1aye046/comment/l636poo/" target="_blank">Using OOP in React</a>.</p>
+		<p>Readme: <a href={URL_SCREEN_APPLICATION_README} target="_blank">Using OOP in React</a>.</p>
 	</figure>
 </section>
 
@@ -104,10 +105,10 @@ export default class Application extends React.Component{
 	}
 
 	/**
-	 * Send a message.
+	 * Add a message to the log
 	 * @var mixed message_data
 	 */
-	putMessage( message_data ){
+	patchLog( message_data ){
 		const broadcast_data = {
 			data : {
 				header : {
@@ -128,15 +129,15 @@ export default class Application extends React.Component{
 	/**
 	 * Send a message in some randomized interval
 	 */
-	putMessageDelayed(){
+	patchLogDelayed(){
 		const min = this.state.header.screen.config.interval.min,
 		max = this.state.header.screen.config.interval.max;
 
 		const timeout = Math.floor( Math.random() * ( max - min + 1 ) + min );
 
 		const f = function(){
-			this.putMessage( new Date().getTime() );
-			this.putMessageDelayed();
+			this.patchLog( new Date().getTime() );
+			this.patchLogDelayed();
 		}.bind( this );
 
 		setTimeout( f, timeout );

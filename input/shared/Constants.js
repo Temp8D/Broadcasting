@@ -16,6 +16,7 @@ export const URL_PATH_CONFIG = '/';
 export const URL_SCREEN_APPLICATION_IMG = 'https://i.imgur.com/k9XRlAU.gif';
 export const URL_SCREEN_BOOT_IMG = 'https://i.imgur.com/3QFZ6G3.gif';
 export const URL_SCREEN_ERROR_IMG = 'https://i.imgur.com/aPk7tfJ.jpeg';
+export const URL_SCREEN_APPLICATION_README = 'https://www.reddit.com/r/reactjs/comments/1aye046/comment/l636poo/';
 
 export const SCREEN_APPLICATION_INTERVAL_MIN = 7500;
 export const SCREEN_APPLICATION_INTERVAL_MAX = 10500;

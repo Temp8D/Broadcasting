@@ -46,66 +46,6 @@ export default class Boot extends React.Component{
 	}
 
 	/**
-	 * Send app errors.
-	 *
-	 * Note: These errors are sent via the primary communication channel #app,
-	 * because in this example there's just one communication channel.
-	 *
-	 * In different scenarios, a dedicated error channel may be useful. 
-	 *
-	 * Also Note: Any component can open a communication channel, so specific 
-	 * errors could be intelligently routed to different components.
-	 */
-	putError( error_data ){
-		if( !Array.isArray( error_data ) ){
-			error_data = [ error_data ];
-		}
-
-		error_data.forEach( ( foreach_data ) => {
-			let broadcast_data = {
-				data : {
-					header : {
-						id : 'put:error'
-					},
-					data : foreach_data
-				},
-				header : {
-					config : {
-						channels : [ BROADCAST_CHANNEL_APP ]
-					}
-				}
-			}
-
-			Broadcasting.putBroadcast( broadcast_data );
-		} );
-	}
-
-	/**
-	 * Send the config to the application.
-	 *
-	 * Note: This component doesn't need to know what to do with the config,
-	 * it just needs to pass it to someone who does. Any component subscribed
-	 * to the app's main channel, and listening to the events can act upon it.
-	 */
-	putConfig( config_data ){
-		const broadcast_data = {
-			data : {
-				header : {
-					id : 'patch:config'
-				},
-				data : config_data
-			},
-			header : {
-				config : {
-					channels : [ BROADCAST_CHANNEL_APP ]
-				}
-			}
-		}
-
-		Broadcasting.putBroadcast( broadcast_data );
-	}
-
-	/**
 	 * Get the config and relay the data to the application.
 	 *
 	 * Note: If multiple sources of config data are needed,
@@ -142,11 +82,7 @@ export default class Boot extends React.Component{
 			network_data = then_data; 
 		} );
 
-
 		application_data = ( network_data?.data || null );
-
-		console.log( 'application_data', application_data );
-		console.log( 'network_data', network_data );
 
 		content_type = ( network_data?.header?.headers?.[ 'content-type' ] || null );
 		status_code = ( network_data?.header?.status || null );
@@ -206,6 +142,66 @@ export default class Boot extends React.Component{
 		);
 
 		return( render_data );
+	}
+
+	/**
+	 * Send the config to the application.
+	 *
+	 * Note: This component doesn't need to know what to do with the config,
+	 * it just needs to pass it to someone who does. Any component subscribed
+	 * to the app's main channel, and listening to the events can act upon it.
+	 */
+	putConfig( config_data ){
+		const broadcast_data = {
+			data : {
+				header : {
+					id : 'patch:config'
+				},
+				data : config_data
+			},
+			header : {
+				config : {
+					channels : [ BROADCAST_CHANNEL_APP ]
+				}
+			}
+		}
+
+		Broadcasting.putBroadcast( broadcast_data );
+	}
+
+	/**
+	 * Send app errors.
+	 *
+	 * Note: These errors are sent via the primary communication channel #app,
+	 * because in this example there's just one communication channel.
+	 *
+	 * In different scenarios, a dedicated error channel may be useful. 
+	 *
+	 * Also Note: Any component can open a communication channel, so specific 
+	 * errors could be intelligently routed to different components.
+	 */
+	putError( error_data ){
+		if( !Array.isArray( error_data ) ){
+			error_data = [ error_data ];
+		}
+
+		error_data.forEach( ( foreach_data ) => {
+			let broadcast_data = {
+				data : {
+					header : {
+						id : 'put:error'
+					},
+					data : foreach_data
+				},
+				header : {
+					config : {
+						channels : [ BROADCAST_CHANNEL_APP ]
+					}
+				}
+			}
+
+			Broadcasting.putBroadcast( broadcast_data );
+		} );
 	}
 
 	/**
